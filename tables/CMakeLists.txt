@@ -68,6 +68,8 @@ add_library(freeeos SHARED
     freeeos/round_ln.f
     freeeos/tau_calc.f
     freeeos/version.f)
+  target_link_libraries(freeeos 
+	  ${BLAS_LIBRARIES})
 
 add_library(opint SHARED
     houdek/v9/lib/condux_ad.f
