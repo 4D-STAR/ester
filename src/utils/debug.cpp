@@ -18,7 +18,7 @@ void sigfpe_handler(int) {
 void enable_sigfpe() {
     // FE_DIVBYZERO | FE_INEXACT | FE_INVALID | FE_OVERFLOW | FE_UNDERFLOW 
     // FE_ALL_EXCEPT
-    feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+    // feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
     signal(SIGFPE, sigfpe_handler);
 }
 
