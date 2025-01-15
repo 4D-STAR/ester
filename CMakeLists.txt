@@ -19,6 +19,7 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/modules)
 if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
     string(CONCAT CMAKE_Fortran_FLAGS
         "-g -O3"
+        " -fallow-argument-mismatch -fallow-invalid-boz"
         " -fno-align-commons -fdefault-real-8 -fdefault-double-8"
         " -ffixed-line-length-none -O -w -fd-lines-as-comments")
 elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
@@ -42,6 +43,18 @@ find_package(LAPACK REQUIRED)
 find_package(PythonLibs REQUIRED)
 find_package(SWIG REQUIRED)
 find_package(PythonInterp REQUIRED)
+
+execute_process(
+    COMMAND "${PYTHON_EXECUTABLE}"
+    -c "import numpy; print(numpy.get_include())"
+    OUTPUT_VARIABLE NUMPY_INCLUDE_DIRS
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+include_directories(${NUMPY_INCLUDE_DIRS})
+#include(CMakePrintHelpers)
+#cmake_print_variables(PYTHON_INCLUDE_DIRS)
+#cmake_print_variables(NUMPY_INCLUDE_DIRS)
+
 find_package(HDF5 COMPONENTS CXX)
 # find_package(VTK 6.3)
 
@@ -70,6 +83,7 @@ include_directories(src/include)
 include_directories(src/graphics)
 include_directories(${PYTHON_INCLUDE_DIRS})
 set(LIBS "${LIBS};${PYTHON_LIBRARIES}")
+
 
 add_definitions(-DWITH_CMAKE)
 add_definitions(-DVERSION="${PROJECT_VERSION}")
