@@ -29,6 +29,8 @@ in
 
     cmakeFlags = ["-DPYTHON_SITE=lib/python"];
 
+    dontStrip = stdenv.isDarwin;
+
     nativeBuildInputs = [
       cmake
       pkg-config

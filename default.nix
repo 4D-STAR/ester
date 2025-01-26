@@ -3,8 +3,8 @@
     import (
       builtins.fetchTarball {
         name = "nixos-gcc13";
-        url = "https://github.com/nixos/nixpkgs/archive/a9858885e197f984d92d7fe64e9fff6b2e488d40.tar.gz";
-        sha256 = "0a55lp827bfx102czy0bp5d6pbp5lh6l0ysp3zs0m1gyniy2jck9";
+        url = "https://github.com/nixos/nixpkgs/archive/e24b4c09e963677b1beea49d411cd315a024ad3a.tar.gz";
+        sha256 = "1m383nldy1jvl8n2jw02l26w9iib4b2a9341c1kf74miaahw7qx6";
       }
     )
     {},
